@@ -14,3 +14,4 @@ export interface RnAngularCoreToken {
 }
 
 export const RN_ANGULAR_CORE_CONFIG = new InjectionToken<RnAngularCoreToken>('RnAngularCoreConfig');
+export const RNCORE_API_BASE_URL = new InjectionToken<string>('RNCORE_API_BASE_URL');
