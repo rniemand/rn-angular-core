@@ -17,7 +17,9 @@ jobs:
         with:
           node-version: '10.19'
       - name: Install dependencies
-        run: npm build
+        run: npm install
+      - name: Run Build
+        run: npm run build
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
