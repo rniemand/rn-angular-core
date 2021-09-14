@@ -6,6 +6,7 @@ import { RNCORE_API_BASE_URL } from 'src/lib/rn-angular-core/rn-angular-core.con
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HomeComponent } from './views/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RnAngularCoreModule
+    RnAngularCoreModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: RNCORE_API_BASE_URL, useValue: '' }

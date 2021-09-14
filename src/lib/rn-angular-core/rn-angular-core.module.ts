@@ -4,6 +4,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { DefaultNoComponentGlobalConfig, GlobalConfig, RNCORE_API_BASE_URL } from './rn-angular-core.config';
 import { AuthService } from './services/auth.service';
 import { StorageService } from './services/storage.service';
+import { UiService } from './services/ui.service';
 
 export const DefaultGlobalConfig: GlobalConfig = {
   ...DefaultNoComponentGlobalConfig
@@ -19,7 +20,8 @@ export const DefaultGlobalConfig: GlobalConfig = {
   entryComponents: [],
   providers: [
     StorageService,
-    AuthService
+    AuthService,
+    UiService
   ]
 })
 export class RnAngularCoreModule {
