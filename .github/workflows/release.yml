@@ -16,8 +16,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '10.19'
+          
+      - name: Install Yarn
+        run: npm install yarn
+      - name: Yarn Install
+        run: yarn install
       - name: Run Build
         run: npm run build
+      
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
