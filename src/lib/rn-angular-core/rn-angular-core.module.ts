@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from "@angular/common/http";
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DefaultNoComponentGlobalConfig, GlobalConfig, RNCORE_API_BASE_URL, RN_ANGULAR_CORE_CONFIG } from './rn-angular-core.config';
+import { DefaultNoComponentGlobalConfig, GlobalConfig, RNCORE_API_BASE_URL } from './rn-angular-core.config';
+import { AuthService } from './services/auth.service';
 import { StorageService } from './services/storage.service';
 
 export const DefaultGlobalConfig: GlobalConfig = {
@@ -9,13 +11,15 @@ export const DefaultGlobalConfig: GlobalConfig = {
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   declarations: [],
   exports: [],
   entryComponents: [],
   providers: [
-    StorageService
+    StorageService,
+    AuthService
   ]
 })
 export class RnAngularCoreModule {
