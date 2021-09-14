@@ -23,6 +23,8 @@ jobs:
         run: yarn install
       - name: Run Build
         run: npm run build
+      - name: Switch Directories
+        run: cd dist
       
       - name: Release
         env:
