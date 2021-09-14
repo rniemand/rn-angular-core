@@ -1,0 +1,21 @@
+{
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "rn-angular-core",
+  "version": "0.0.0-placeholder",
+  "peerDependencies": {
+    "@angular/core": ">=12.0.0-0",
+    "@angular/common": ">=12.0.0-0",
+    "@angular/platform-browser": ">=12.0.0-0"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    },
+    "dest": "../../dist"
+  },
+  "repository": "rniemand/rn-angular-core",
+  "homepage": "https://github.com/rniemand/rn-angular-core",
+  "license": "MIT",
+  "description": "Rn Angular Core",
+  "keywords": []
+}
