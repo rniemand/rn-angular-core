@@ -291,7 +291,7 @@ export class AuthService {
 
     this._logger.trace2('updateAuthToken', `updating token (${token.length} bytes)`);
     this._currentToken = token;
-    //this.storage.setItem(KEY_TOKEN, token);
+    this._storage.setItem(KEY_TOKEN, token);
   }
 
   public getAuthToken = () => {
