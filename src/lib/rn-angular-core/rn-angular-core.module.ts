@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from "@angular/common/http";
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { MAT_MENU_SCROLL_STRATEGY } from '@angular/material/menu';
 import { ValidationErrorDialog } from './dialogs/validation-error/validation-error.dialog';
 import { RnCoreMaterialModule } from './material.module';
-import { DefaultNoComponentGlobalConfig, GlobalConfig, RNCORE_API_BASE_URL, RN_DIALOG_DEFAULTS } from './rn-angular-core.config';
+import { DefaultNoComponentGlobalConfig, GlobalConfig, RNCORE_API_BASE_URL, RN_DIALOG_DEFAULTS, RN_LOGGER_CONFIG } from './rn-angular-core.config';
 import { AuthService } from './services/auth.service';
+import { LoggerConfiguration, LoggerFactory, LoggerSeverity } from './services/logger';
 import { StorageService } from './services/storage.service';
 import { UiService } from './services/ui.service';
 
@@ -22,8 +24,6 @@ const defaultDialogOptions = {
   hasBackdrop: true
 };
 
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -38,11 +38,12 @@ const defaultDialogOptions = {
   providers: [
     StorageService,
     AuthService,
-    UiService
+    UiService,
+    LoggerFactory
   ]
 })
 export class RnAngularCoreModule {
-  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<RnAngularCoreModule> {
+  static forRoot(): ModuleWithProviders<RnAngularCoreModule> {
     return {
       ngModule: RnAngularCoreModule,
       providers: [

@@ -5,6 +5,7 @@ import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 
 import { Observable, throwError as _observableThrow, of as _observableOf, Subject } from 'rxjs';
 import { StorageService } from "./storage.service";
 import { UiService } from "./ui.service";
+import { LoggerFactory, LoggerInstance } from "./logger";
 
 export interface IAuthenticationRequest {
   username?: string | undefined;
@@ -188,17 +189,20 @@ export class AuthService {
   private http: HttpClient;
   private baseUrl: string;
   private _currentToken: string = '';
+  private _logger: LoggerInstance;
   protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
   constructor(
     private _storage: StorageService,
     private _uiService: UiService,
+    private _loggerFactory: LoggerFactory,
     @Inject(HttpClient) http: HttpClient,
     @Optional()
     @Inject(RNCORE_API_BASE_URL) baseUrl?: string
   ) {
     this.http = http;
     this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    this._logger = this._loggerFactory.getInstance('AuthService');
 
     if(this._storage.hasItem(KEY_USER_INFO)) {
       this.currentUser = this._storage.getItem<UserDto>(KEY_USER_INFO);
@@ -212,7 +216,7 @@ export class AuthService {
 
   // public
   public login = (username: string, password: string) => {
-    // this._logger.traceMethod('login');
+    this._logger.traceMethod('login');
 
     let authRequest = new AuthenticationRequest({
       username: username,
@@ -241,7 +245,7 @@ export class AuthService {
   }
 
   public logout = () => {
-    //this._logger.traceMethod('logout');
+    this._logger.traceMethod('logout');
 
     this._setLoggedInSate(false);
     //this.router.navigate(['/']);
@@ -249,16 +253,16 @@ export class AuthService {
   }
 
   public updateAuthToken = (token: any) => {
-    //this._logger.traceMethod('updateAuthToken', `(${typeof token})`);
+    this._logger.traceMethod('updateAuthToken', `(${typeof token})`);
     if(typeof(token) !== 'string' || token.length <= 0) { return; }
 
-    //this._logger.trace2('updateAuthToken', `updating token (${token.length} bytes)`);
+    this._logger.trace2('updateAuthToken', `updating token (${token.length} bytes)`);
     this._currentToken = token;
     //this.storage.setItem(KEY_TOKEN, token);
   }
 
   public getAuthToken = () => {
-    //this._logger.traceMethod('getAuthToken');
+    this._logger.traceMethod('getAuthToken');
 
     if(this._currentToken.length < 1)
       return null;
@@ -325,7 +329,7 @@ export class AuthService {
   }
 
   private _updateCurrentUser = (response: AuthenticationResponse) => {
-    //this._logger.traceMethod('_updateCurrentUser');
+    this._logger.traceMethod('_updateCurrentUser');
     let loggedIn = (response?.user?.userId ?? 0) > 0;
     this.currentUser = undefined;
 
@@ -341,17 +345,17 @@ export class AuthService {
   }
 
   private _removeCurrentUser = () => {
-    //this._logger.traceMethod('_removeCurrentUser');
+    this._logger.traceMethod('_removeCurrentUser');
     this.currentUser = undefined;
 
     if(this._storage.hasItem(KEY_USER_INFO)) {
       this._storage.removeItem(KEY_USER_INFO);
-      //this._logger.trace2('_removeCurrentUser', 'Removed current user info');
+      this._logger.trace2('_removeCurrentUser', 'Removed current user info');
     }
   }
 
   private _setLoggedInSate = (loggedIn: boolean, token?: string) => {
-    //this._logger.traceMethod('_setLoggedInSate', loggedIn ? 'LOGGED_IN' : 'LOGGED_OUT');
+    this._logger.traceMethod('_setLoggedInSate', loggedIn ? 'LOGGED_IN' : 'LOGGED_OUT');
 
     this.loggedIn = loggedIn;
 
@@ -371,7 +375,7 @@ export class AuthService {
   }
 
   private _processAuthResponse = (response: AuthenticationResponse) => {
-    //this._logger.traceMethod('_processAuthResponse');
+    this._logger.traceMethod('_processAuthResponse');
     this._updateCurrentUser(response);
 
     if((response?.token?.length ?? 0) > 0) {
