@@ -218,8 +218,8 @@ function blobToText(blob: any): Observable<string> {
   });
 }
 
-const KEY_TOKEN = 'user.token';
-const KEY_USER_INFO = 'user.info';
+const KEY_TOKEN = 'rnCore.userToken';
+const KEY_USER_INFO = 'rnCore.userInfo';
 
 @Injectable()
 export class AuthService {
@@ -244,15 +244,7 @@ export class AuthService {
     this.http = http;
     this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
     this._logger = this._loggerFactory.getInstance('AuthService');
-
-    if(this._storage.hasItem(KEY_USER_INFO)) {
-      this.currentUser = this._storage.getItem<UserDto>(KEY_USER_INFO);
-    }
-    
-    if(this._storage.hasItem(KEY_TOKEN)) {
-      // TODO: [VALIDATION] Add some form of token validation here
-      this._setLoggedInSate(true, this._storage.getItem<string>(KEY_TOKEN));
-    }
+    this._tryResumeSession();
   }
 
   // public
@@ -423,6 +415,19 @@ export class AuthService {
       this._setLoggedInSate(true, response.token);
     } else {
       this._setLoggedInSate(false);
+    }
+  }
+
+  private _tryResumeSession = () => {
+    if(this._storage.hasItem(KEY_USER_INFO)) {
+      this._logger.trace('loading stored user info');
+      this.currentUser = this._storage.getItem<UserDto>(KEY_USER_INFO);
+    }
+    
+    if(this._storage.hasItem(KEY_TOKEN)) {
+      // TODO: [VALIDATION] Add some form of token validation here
+      this._logger.trace('found stored session token');
+      this._setLoggedInSate(true, this._storage.getItem<string>(KEY_TOKEN));
     }
   }
 }

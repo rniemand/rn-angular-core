@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoggerConfiguration, LoggerSeverity } from 'src/lib/rn-angular-core/services/logger';
+import { LoginComponent } from './views/login/login.component';
 
 const defaultLoggerConfig: LoggerConfiguration = {
   enabled: true,
@@ -20,7 +21,8 @@ const defaultLoggerConfig: LoggerConfiguration = {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

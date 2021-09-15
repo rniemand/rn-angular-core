@@ -16,7 +16,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this._loggerFactory.getInstance('HomeComponent').warn('HELLO');
-    this._authService.login('username', 'password');
+    // this._authService.login('username', 'password');
+
+    console.log('here');
   }
 
 }
