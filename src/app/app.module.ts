@@ -27,8 +27,8 @@ const defaultLoggerConfig: LoggerConfiguration = {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     RnAngularCoreModule,
-    BrowserAnimationsModule
   ],
   providers: [
     { provide: RNCORE_API_BASE_URL, useValue: 'http://localhost:61623' },

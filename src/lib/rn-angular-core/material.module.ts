@@ -20,16 +20,19 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const modules = [
   MatSnackBarModule,
-  MatDialogModule
+  MatDialogModule,
+  MatIconModule,
+  MatButtonModule,
+  MatInputModule
 ];
 
 @NgModule({
