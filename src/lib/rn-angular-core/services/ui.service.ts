@@ -1,4 +1,23 @@
 import { EventEmitter, Injectable } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
+import { ValidationErrorDialog, ValidationErrorDialogData } from "../dialogs/validation-error/validation-error.dialog";
+import { RN_DIALOG_DEFAULTS } from "../rn-angular-core.config";
+
+export interface NotifyOptions {
+  message: string;
+  action?: string;
+  horizontalPosition?: MatSnackBarHorizontalPosition,
+  verticalPosition?: MatSnackBarVerticalPosition,
+  duration?: number
+}
+
+export interface ValidationError {
+  error: string;
+  errors: string[];
+  isValid: boolean;
+  ruleSetsExecuted: string[];
+}
 
 @Injectable()
 export class UiService {
@@ -38,7 +57,7 @@ export class UiService {
     };
 
     this.dialog.open(ValidationErrorDialog, {
-      ...DIALOG_DEFAULTS,
+      ...RN_DIALOG_DEFAULTS,
       backdropClass: 'validation-error',
       data: dialogData
     });
@@ -48,6 +67,10 @@ export class UiService {
 
   handleClientError = (error: any, ...args: any[]) => {
     // TODO: [COMPLETE] Complete me
+
+    this.notify({
+      message: error
+    });
     
     if(this._closeOnError) {
       this.hideLoader();

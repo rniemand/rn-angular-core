@@ -4,6 +4,7 @@ import { RNCORE_API_BASE_URL } from "../rn-angular-core.config";
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf, Subject } from 'rxjs';
 import { StorageService } from "./storage.service";
+import { UiService } from "./ui.service";
 
 export interface IAuthenticationRequest {
   username?: string | undefined;
@@ -191,6 +192,7 @@ export class AuthService {
 
   constructor(
     private _storage: StorageService,
+    private _uiService: UiService,
     @Inject(HttpClient) http: HttpClient,
     @Optional()
     @Inject(RNCORE_API_BASE_URL) baseUrl?: string
@@ -227,7 +229,7 @@ export class AuthService {
           });
         },
         (error: any) => {
-          // this.uiService.handleClientError(error);
+          this._uiService.handleClientError(`Error logging in: ${error}`);
           this._setLoggedInSate(false);
           resolve({
             loggedIn: false,
@@ -243,7 +245,7 @@ export class AuthService {
 
     this._setLoggedInSate(false);
     //this.router.navigate(['/']);
-    //this.uiService.notify('Logged out', 1500);
+    this._uiService.notify('Logged out', 1500);
   }
 
   public updateAuthToken = (token: any) => {
