@@ -29,7 +29,7 @@ const defaultLoggerConfig: LoggerConfiguration = {
     BrowserAnimationsModule
   ],
   providers: [
-    { provide: RNCORE_API_BASE_URL, useValue: '' },
+    { provide: RNCORE_API_BASE_URL, useValue: 'http://localhost:61623' },
     { provide: RN_LOGGER_CONFIG, useValue: defaultLoggerConfig }
   ],
   bootstrap: [AppComponent]
