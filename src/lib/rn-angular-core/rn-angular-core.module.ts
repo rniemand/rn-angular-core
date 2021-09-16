@@ -4,11 +4,16 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { ValidationErrorDialog } from './dialogs/validation-error/validation-error.dialog';
+
+import { LoggerFactory } from './logger';
+
 import { RnCoreMaterialModule } from './material.module';
+
 import { DefaultNoComponentGlobalConfig, GlobalConfig, RNCORE_API_BASE_URL, RN_DIALOG_DEFAULTS } from './rn-angular-core.config';
+
 import { AuthService } from './services/auth.service';
-import { LoggerFactory } from './services/logger';
 import { StorageService } from './services/storage.service';
 import { UiService } from './services/ui.service';
 
@@ -52,7 +57,7 @@ const defaultDialogOptions = {
     StorageService,
     AuthService,
     UiService,
-    LoggerFactory
+    LoggerFactory,
   ]
 })
 export class RnAngularCoreModule {

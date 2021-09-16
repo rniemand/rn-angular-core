@@ -5,7 +5,7 @@ import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 
 import { Observable, throwError as _observableThrow, of as _observableOf, Subject } from 'rxjs';
 import { StorageService } from "./storage.service";
 import { UiService } from "./ui.service";
-import { LoggerFactory, LoggerInstance } from "./logger";
+import { LoggerFactory, LoggerInstance } from "../logger";
 
 
 export class UserDto implements IUserDto {

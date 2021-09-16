@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { LoggerConfiguration } from './services/logger';
+import { LoggerConfiguration } from './logger';
 
 export interface IndividualConfig { }
 

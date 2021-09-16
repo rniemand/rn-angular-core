@@ -1,22 +1,6 @@
-import { Inject, Injectable, Optional, SimpleChanges } from "@angular/core";
-import { RN_LOGGER_CONFIG } from "../rn-angular-core.config";
-
-export enum LoggerSeverity {
-  Trace = 1,
-  Debug = 2,
-  Information = 3,
-  Warning = 4,
-  Error = 5
-}
-
-export interface LoggerConfiguration {
-  enabled: boolean;
-  minSeverity: LoggerSeverity;
-  enableMethodTracing: boolean;
-  skipInitMethodTracing: boolean;
-
-  disabledInstances: string[];
-}
+import { SimpleChanges } from "@angular/core";
+import { LoggerFactory } from "./LoggerFactory";
+import { LoggerSeverity } from "./LoggerSeverity";
 
 export class LoggerInstance {
   enabled: boolean = true;
@@ -28,7 +12,6 @@ export class LoggerInstance {
     this.enabled = this._loggerFactory.config.disabledInstances.indexOf(this.instance) === -1;
     this.traceMethod('constructor');
   }
-
 
   // public methods
   public trace = (message: string, ...args: any[]) => {
@@ -124,41 +107,5 @@ export class LoggerInstance {
   // internal methods
   private _canLog = () => {
     return this.enabled;
-  }
-}
-
-@Injectable()
-export class LoggerFactory {
-  
-  constructor(
-    @Inject(RN_LOGGER_CONFIG)
-    public config: LoggerConfiguration
-  ) { }
-
-  // public methods
-  getInstance = (instance: string) => {
-    return new LoggerInstance(this, instance);
-  }
-
-  log = (severity: LoggerSeverity, message: string, ...args: any[]) => {
-    if(!this._canLog(severity)) { return; }
-
-    switch(severity) {
-      case LoggerSeverity.Trace: console.log(`[TRACE] ${message}`, ...args); break;
-      case LoggerSeverity.Debug: console.log(`[DEBUG] ${message}`, ...args); break;
-      case LoggerSeverity.Information: console.info(`[INFO] ${message}`, ...args); break;
-      case LoggerSeverity.Warning: console.warn(`[WARN] ${message}`, ...args); break;
-      case LoggerSeverity.Error: console.error(`[ERROR] ${message}`, ...args); break;
-    }
-  }
-
-  traceMethod = (message: string, ...args: any[]) => {
-    if(this.config.skipInitMethodTracing) { return; }
-    console.log(`[METHOD] ${message}`, ...args);
-  }
-
-  // private methods
-  private _canLog = (severity: LoggerSeverity) => {
-    return severity >= this.config.minSeverity;
   }
 }
