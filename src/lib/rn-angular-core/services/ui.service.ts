@@ -1,5 +1,5 @@
-import { EventEmitter, Injectable } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { EventEmitter, Inject, Injectable, Optional } from "@angular/core";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 import { ValidationErrorDialog, ValidationErrorDialogData } from "../dialogs/validation-error/validation-error.dialog";
 import { RN_DIALOG_DEFAULTS } from "../rn-angular-core.config";
@@ -28,8 +28,13 @@ export class UiService {
   
   constructor(
     private _snackBar: MatSnackBar,
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    @Optional()
+    @Inject(RN_DIALOG_DEFAULTS)
+    private _dialogDefaults?: MatDialogConfig
+  ) {
+    this._dialogDefaults = this._dialogDefaults || {};
+  }
   
   notify = (options: NotifyOptions | string, duration?: number) => {
     let castOptions: NotifyOptions = { message: '' };
@@ -57,7 +62,7 @@ export class UiService {
     };
 
     this.dialog.open(ValidationErrorDialog, {
-      ...RN_DIALOG_DEFAULTS,
+      ...this._dialogDefaults,
       backdropClass: 'validation-error',
       data: dialogData
     });
