@@ -5,10 +5,11 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { RnCoreMaterialModule } from './material.module';
 
 // Public APIs
-import { BreadcrumbsComponent, HeaderComponent, SideNavComponent } from './components/components';
+import { BreadcrumbsComponent, HeaderComponent, ShortcutsComponent, SideNavComponent } from './components/components';
 import { AuthService, ShortcutsService, StorageService, UiService } from './services/services';
 import { ValidationErrorDialog } from './dialogs/dialogs';
 import { LoggerFactory } from './logger/logger';
@@ -27,6 +28,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RnCoreMaterialModule,
     HttpClientModule,
+    FlexLayoutModule,
     RouterModule,
   ],
   declarations: [
@@ -37,6 +39,7 @@ import { RouterModule } from '@angular/router';
     BreadcrumbsComponent,
     HeaderComponent,
     SideNavComponent,
+    ShortcutsComponent,
   ],
   exports: [
     CommonModule,
@@ -46,12 +49,14 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RnCoreMaterialModule,
     HttpClientModule,
+    FlexLayoutModule,
     RouterModule,
 
     // Components
     BreadcrumbsComponent,
     HeaderComponent,
     SideNavComponent,
+    ShortcutsComponent,
   ],
   entryComponents: [],
   providers: [

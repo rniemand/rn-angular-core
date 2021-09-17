@@ -1,0 +1,13 @@
+<div class="quick-links" *ngIf="loggedIn" fxLayout="row wrap" fxLayoutAlign="center space-evenly">
+  <mat-card class="link-card" *ngFor="let shortcut of shortcuts">
+    <mat-card-title>{{ shortcut.title }}</mat-card-title>
+    <mat-card-content>
+      <mat-icon size="40">{{ shortcut.icon }}</mat-icon>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button [class]="action.btnClass" fxFlex (click)="handleAction(action)" *ngFor="let action of shortcut.actions">
+        {{ action.title }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
