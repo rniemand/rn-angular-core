@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <rn-side-nav (closeSidenav)="sidenav.close()"></rn-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <rn-header (sidenavToggle)="sidenav.toggle()"></rn-header>
+    <main>
+      <div class="page-loader" *ngIf="showLoader" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+      </div>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

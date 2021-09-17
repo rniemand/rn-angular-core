@@ -1,0 +1,22 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="/" (click)="onClose()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>home</mat-icon>
+    <span class="nav-caption">Home</span>
+  </a>
+
+  <!-- Dynamic links -->
+  <a mat-list-item [routerLink]="link.routerLink" (click)="onClose()" routerLinkActive="active" [routerLinkActiveOptions]="link.routerLinkActiveOptions" *ngFor="let link of navLinks">
+    <mat-icon>{{ link.icon }}</mat-icon>
+    <span class="nav-caption">{{ link.title }}</span>
+  </a>
+
+  <a mat-list-item routerLink="/login" (click)="onClose()" routerLinkActive="active" *ngIf="!loggedIn">
+    <mat-icon>lock_open</mat-icon>
+    <span class="nav-caption">Login</span>
+  </a>
+
+  <a mat-list-item (click)="logout()" *ngIf="loggedIn">
+    <mat-icon>lock_open</mat-icon>
+    <span class="nav-caption">Logout</span>
+  </a>
+</mat-nav-list>

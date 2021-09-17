@@ -8,13 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RnCoreMaterialModule } from './material.module';
 
 // Public APIs
-import { BreadcrumbsComponent, HeaderComponent } from './components/components';
+import { BreadcrumbsComponent, HeaderComponent, SideNavComponent } from './components/components';
 import { AuthService, ShortcutsService, StorageService, UiService } from './services/services';
 import { ValidationErrorDialog } from './dialogs/dialogs';
 import { LoggerFactory } from './logger/logger';
 
 // Configuration
 import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-core.config';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-co
     ReactiveFormsModule,
     RnCoreMaterialModule,
     HttpClientModule,
+    RouterModule,
   ],
   declarations: [
     // Dialogs
@@ -34,6 +36,7 @@ import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-co
     // Components
     BreadcrumbsComponent,
     HeaderComponent,
+    SideNavComponent,
   ],
   exports: [
     CommonModule,
@@ -43,10 +46,12 @@ import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-co
     ReactiveFormsModule,
     RnCoreMaterialModule,
     HttpClientModule,
+    RouterModule,
 
     // Components
     BreadcrumbsComponent,
     HeaderComponent,
+    SideNavComponent,
   ],
   entryComponents: [],
   providers: [
