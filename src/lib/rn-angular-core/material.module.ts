@@ -34,6 +34,9 @@ const modules = [
   MatButtonModule,
   MatInputModule,
   MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatAutocompleteModule,
+  MatTooltipModule,
 ];
 
 @NgModule({
