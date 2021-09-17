@@ -19,7 +19,7 @@ import { StorageService } from './services/storage.service';
 import { UiService } from './services/ui.service';
 
 // Configuration
-import { RNCORE_API_BASE_URL, RN_DIALOG_DEFAULTS } from './rn-angular-core.config';
+import { RnAuthConfig, RN_AUTH_CONFIG, RN_DIALOG_DEFAULTS } from './rn-angular-core.config';
 import { MatDialogConfig } from '@angular/material/dialog';
 
 const dialogDefaults: MatDialogConfig= {
@@ -27,6 +27,12 @@ const dialogDefaults: MatDialogConfig= {
   minWidth: '350px',
   maxWidth: '800px',
   hasBackdrop: true
+};
+
+const defaultAuthConfig: RnAuthConfig = {
+  apiBaseUrl: '',
+  storageTokenName: 'rnCore.userToken',
+  storageUserInfo: 'rnCore.userInfo'
 };
 
 @NgModule({
@@ -63,8 +69,8 @@ export class RnAngularCoreModule {
     return {
       ngModule: RnAngularCoreModule,
       providers: [
-        { provide: RNCORE_API_BASE_URL, useValue: '' },
-        { provide: RN_DIALOG_DEFAULTS, useValue: dialogDefaults }
+        { provide: RN_DIALOG_DEFAULTS, useValue: dialogDefaults },
+        { provide: RN_AUTH_CONFIG, useValue: defaultAuthConfig }
       ],
     };
   }
