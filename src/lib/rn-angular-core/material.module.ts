@@ -32,7 +32,8 @@ const modules = [
   MatDialogModule,
   MatIconModule,
   MatButtonModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({
