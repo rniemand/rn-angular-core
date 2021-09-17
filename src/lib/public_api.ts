@@ -1,3 +1,4 @@
+export * from './rn-angular-core/components/components';
 export * from './rn-angular-core/dialogs/dialogs';
 export * from './rn-angular-core/guards/guards';
 export * from './rn-angular-core/interceptors/interceptors';

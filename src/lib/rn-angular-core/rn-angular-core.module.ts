@@ -7,6 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RnCoreMaterialModule } from './material.module';
 
+// Components
+import { BreadcrumbsComponent } from '../public_api';
+
 // Dialogs
 import { ValidationErrorDialog } from './dialogs/validation-error/validation-error.dialog';
 
@@ -21,6 +24,7 @@ import { UiService } from './services/ui.service';
 // Configuration
 import { RnAuthConfig, RN_AUTH_CONFIG, RN_DIALOG_DEFAULTS } from './rn-angular-core.config';
 import { MatDialogConfig } from '@angular/material/dialog';
+
 
 const dialogDefaults: MatDialogConfig= {
   width: '80%',
@@ -46,7 +50,11 @@ const defaultAuthConfig: RnAuthConfig = {
     HttpClientModule,
   ],
   declarations: [
-    ValidationErrorDialog
+    // Dialogs
+    ValidationErrorDialog,
+
+    // Components
+    BreadcrumbsComponent,
   ],
   exports: [
     CommonModule,
@@ -56,6 +64,9 @@ const defaultAuthConfig: RnAuthConfig = {
     ReactiveFormsModule,
     RnCoreMaterialModule,
     HttpClientModule,
+
+    // Components
+    BreadcrumbsComponent,
   ],
   entryComponents: [],
   providers: [

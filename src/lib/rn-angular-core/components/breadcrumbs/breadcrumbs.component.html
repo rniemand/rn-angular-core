@@ -1,0 +1,20 @@
+<div class="breadcrumbs">
+  <span *ngFor="let crumb of crumbs">
+    <mat-icon *ngIf="crumb.isIcon && crumb.isLink" class="icon link" (click)="follow(crumb)">
+      {{ crumb.icon }}
+    </mat-icon>
+
+    <mat-icon *ngIf="crumb.isIcon && !crumb.isLink" class="icon">
+      {{ crumb.icon }}
+    </mat-icon>
+
+    <span *ngIf="crumb.isText && crumb.isLink" class="text link" (click)="follow(crumb)">
+      {{ crumb.title }}
+    </span>
+    <span *ngIf="crumb.isText && !crumb.isLink" class="text">
+      {{ crumb.title }}
+    </span>
+
+    <span *ngIf="!crumb.lastEntry" class="slash">/</span>
+  </span>
+</div>

@@ -1,0 +1,29 @@
+.breadcrumbs {
+  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 22px;
+
+  .icon {
+    color: #fff;
+    vertical-align: text-bottom;
+
+    &.link { cursor: pointer; color: #c395d6; }
+    &:hover { color: #a06cb5; }
+  }
+
+  .text {
+    color: #fff;
+
+    &.link {
+      color: #d6a1ec;
+      cursor: pointer;
+      &:hover { color: #a06cb5; }
+    }
+  }
+
+  .slash {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+}
