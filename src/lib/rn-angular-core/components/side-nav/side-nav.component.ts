@@ -33,11 +33,11 @@ export class SideNavComponent implements OnInit, OnDestroy {
   
 
   // interface methods
-  ngOnInit = () => {
+  ngOnInit() {
     this._logger.traceMethod('ngOnInit');
   }
 
-  ngOnDestroy = () => {
+  ngOnDestroy() {
     this._logger.traceMethod('ngOnDestroy');
     this._subscriptions?.forEach(s => s?.unsubscribe());
   }

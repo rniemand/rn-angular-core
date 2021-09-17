@@ -9,7 +9,7 @@ import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 
 // RnAngularCore
-import { RnAngularCoreModule, RnAppConfig, RnDefaultAppConfig, RN_APP_CONFIG } from 'src/lib/public_api';
+import { RnAngularCoreModule, RnAppConfig, RnDefaultAppConfig, RN_APP_CONFIG, ShortcutsService } from 'src/lib/public_api';
 
 
 const appConfig: RnAppConfig = {
@@ -44,4 +44,19 @@ const appConfig: RnAppConfig = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private _shortcuts: ShortcutsService
+  ) {
+    this._shortcuts.addHomeShortcut({
+      icon: 'home',
+      title: 'Testing',
+      actions: [
+        {
+          title: 'Edit',
+          routerLink: ['']
+        }
+      ]
+    });
+  }
+}

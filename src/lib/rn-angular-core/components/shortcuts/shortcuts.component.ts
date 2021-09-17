@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { AuthService, HomeShortcut, HomeShortcutAction, ShortcutsService } from 
   templateUrl: './shortcuts.component.html',
   styleUrls: ['./shortcuts.component.scss']
 })
-export class ShortcutsComponent implements OnInit, OnDestroy {
+export class ShortcutsComponent implements OnInit, OnDestroy, OnChanges {
   @Input('category') category: string = 'home';
   loggedIn: boolean = false;
   shortcuts: HomeShortcut[] = [];
@@ -19,6 +19,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy {
 
   private _logger: LoggerInstance;
   private _subscriptions: Subscription[] = [];
+  private _lastCategory: string = '';
   
   constructor(
     private _loggerFactory: LoggerFactory,
@@ -30,9 +31,41 @@ export class ShortcutsComponent implements OnInit, OnDestroy {
   }
   
   // interface
-  ngOnInit = () => {
+  ngOnInit(): void {
     this._logger.traceInit();
+    
+    this._subscriptions.push(this._authService.authChanged.subscribe(
+      (loggedIn: boolean) => {
+        this.loggedIn = loggedIn;
+        this._refresh();
+      }
+    ));
 
+    this.loggedIn = this._authService.loggedIn;
+    this._refresh();
+  }
+
+  ngOnDestroy(): void {
+    this._logger.traceDestroy();
+    this._subscriptions?.forEach(s => s?.unsubscribe());
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this._refresh();
+  }
+
+  // template
+  handleAction = (action: HomeShortcutAction) => {
+    this._router.navigate(action.routerLink);
+  }
+
+  // internal
+  private _refresh = () => {
+    if(this._lastCategory === this.category) {
+      return;
+    }
+
+    this._lastCategory = this.category;
     this.shortcuts = this._shortcuts.getShortcuts(this.category).map((entry) => {
       entry.actions.map(action => {
         action.btnClass = action?.btnClass ?? 'default';
@@ -42,23 +75,6 @@ export class ShortcutsComponent implements OnInit, OnDestroy {
       return entry;
     });
 
-    this._subscriptions.push(this._authService.authChanged.subscribe(
-      (loggedIn: boolean) => {
-        this.loggedIn = loggedIn;
-      }
-    ));
-
-    this.loggedIn = this._authService.loggedIn;
     this.hasShortcuts = this.shortcuts.length > 0;
-  }
-
-  ngOnDestroy(): void {
-    this._logger.traceDestroy();
-    this._subscriptions?.forEach(s => s?.unsubscribe());
-  }
-
-  // template
-  handleAction = (action: HomeShortcutAction) => {
-    this._router.navigate(action.routerLink);
   }
 }

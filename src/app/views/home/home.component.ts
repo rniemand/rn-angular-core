@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerFactory } from 'src/lib/public_api';
-import { AuthService } from 'src/lib/rn-angular-core/services/auth.service';
+import { ShortcutsService } from 'src/lib/public_api';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +7,36 @@ import { AuthService } from 'src/lib/rn-angular-core/services/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  category: string = 'home';
 
   constructor(
-    private _authService: AuthService,
-    private _loggerFactory: LoggerFactory
-  ) { }
+    private _shortcuts: ShortcutsService
+  ) {
+    this._shortcuts.addHomeShortcut({
+      icon: 'home',
+      title: 'Home 2',
+      actions: [
+        {
+          title: 'Action',
+          routerLink: ['']
+        }
+      ]
+    }).addShortcut({
+      icon: 'home',
+      title: 'Test',
+      actions: [
+        {
+          title: 'Action',
+          routerLink: ['']
+        }
+      ]
+    }, 'test');
+  }
 
   ngOnInit(): void {
-    this._loggerFactory.getInstance('HomeComponent').warn('HELLO');
-    // this._authService.login('username', 'password');
-
-    console.log('here');
+    setTimeout(() => {
+      this.category = 'test';
+    }, 2000);
   }
 
 }

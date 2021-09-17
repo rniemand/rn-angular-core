@@ -27,16 +27,18 @@ export class ShortcutsService {
   private _sideNavShortcuts: SideNavShortcut[] = [];
 
   // public
-  public addHomeShortcut = (shortcut: HomeShortcut) => {
+  public addHomeShortcut = (shortcut: HomeShortcut): ShortcutsService => {
     this.addShortcut(shortcut, 'home');
+    return this;
   }
 
-  public addShortcut = (shortcut: HomeShortcut, category: string) => {
+  public addShortcut = (shortcut: HomeShortcut, category: string): ShortcutsService => {
     if(!this._shortcuts.hasOwnProperty(category)) {
       this._shortcuts[category] = [];
     }
 
     this._shortcuts[category].push(shortcut);
+    return this;
   }
 
   public getHomeShortcuts = () => {
@@ -51,12 +53,14 @@ export class ShortcutsService {
     return this._shortcuts[category];
   }
 
-  public addSideNavShortcut = (shortcut: SideNavShortcut) => {
+  public addSideNavShortcut = (shortcut: SideNavShortcut): ShortcutsService => {
     this._sideNavShortcuts.push({
       ...shortcut,
       loggedIn: shortcut?.loggedIn ?? false,
       routerLinkActiveOptions: shortcut?.routerLinkActiveOptions ?? {}
     });
+
+    return this;
   }
 
   public getSideNavShortcuts = () => {
