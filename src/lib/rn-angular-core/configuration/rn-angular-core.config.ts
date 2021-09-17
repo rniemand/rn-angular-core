@@ -1,20 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { MatDialogConfig } from '@angular/material/dialog';
-import { LoggerConfiguration, LoggerSeverity } from '../logger/logger';
-
-export interface RnAuthConfig {
-  storageTokenName: string,
-  storageUserInfo: string
-}
-
-export interface RnAppConfig {
-  dialogDefaults: MatDialogConfig,
-  logger: LoggerConfiguration,
-  auth: RnAuthConfig,
-  apiBaseUrl: string,
-  appName: string,
-  appVersion: string
-}
+import { LoggerSeverity } from '../logger/logger';
+import { RnAppConfig } from './RnAppConfig';
 
 export const RnDefaultAppConfig: RnAppConfig = {
   dialogDefaults: {
