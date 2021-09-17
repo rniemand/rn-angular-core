@@ -1,13 +1,42 @@
 import { InjectionToken } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { LoggerConfiguration } from './logger';
+import { LoggerConfiguration, LoggerSeverity } from './logger';
 
 export interface RnAuthConfig {
-  apiBaseUrl: string,
   storageTokenName: string,
   storageUserInfo: string
 }
 
-export const RN_DIALOG_DEFAULTS = new InjectionToken<MatDialogConfig>('RN_DIALOG_DEFAULTS');
-export const RN_LOGGER_CONFIG = new InjectionToken<LoggerConfiguration>('RN_LOGGER_CONFIG');
-export const RN_AUTH_CONFIG = new InjectionToken<RnAuthConfig>('RN_AUTH_CONFIG');
+export interface RnAppConfig {
+  dialogDefaults: MatDialogConfig,
+  logger: LoggerConfiguration,
+  auth: RnAuthConfig,
+  apiBaseUrl: string,
+  appName: string,
+  appVersion: string
+}
+
+export const RnDefaultAppConfig: RnAppConfig = {
+  dialogDefaults: {
+    width: '80%',
+    minWidth: '350px',
+    maxWidth: '800px',
+    hasBackdrop: true
+  },
+  logger: {
+    enabled: true,
+    minSeverity: LoggerSeverity.Trace,
+    enableMethodTracing: true,
+    skipInitMethodTracing: false,
+    disabledInstances: []
+  },
+  auth: {
+    storageTokenName: 'rnCore.userToken',
+    storageUserInfo: 'rnCore.userInfo'
+  },
+  apiBaseUrl: '',
+  appName: 'RnAngularCore',
+  appVersion: '1.0.0'
+};
+
+export const RN_APP_CONFIG = new InjectionToken<RnAppConfig>('RN_APP_CONFIG');

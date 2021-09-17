@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggerFactory } from 'src/lib/public_api';
 import { AuthService } from 'src/lib/rn-angular-core/services/auth.service';
-import { LoggerFactory } from 'src/lib/rn-angular-core/services/logger';
 
 @Component({
   selector: 'app-home',

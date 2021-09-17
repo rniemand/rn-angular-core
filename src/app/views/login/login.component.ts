@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoggerFactory, LoggerInstance } from 'src/lib/public_api';
 import { AuthResult, AuthService, UserDto } from 'src/lib/rn-angular-core/services/auth.service';
-import { LoggerFactory, LoggerInstance } from 'src/lib/rn-angular-core/services/logger';
 import { UiService } from 'src/lib/rn-angular-core/services/ui.service';
 
 @Component({

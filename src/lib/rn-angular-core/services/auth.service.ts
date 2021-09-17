@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from "@angular/common/http";
-import { Inject, Injectable, Optional } from "@angular/core";
-import { RnAuthConfig, RN_AUTH_CONFIG } from "../rn-angular-core.config";
+import { Inject, Injectable } from "@angular/core";
+import { RnAppConfig, RN_APP_CONFIG } from "../rn-angular-core.config";
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf, Subject } from 'rxjs';
 import { StorageService } from "./storage.service";
@@ -223,6 +223,8 @@ export class AuthService {
   authChanged = new Subject<boolean>();
   loggedIn: boolean = false;
   currentUser?: UserDto;
+  keyToken: string;
+  keyUserInfo: string;
 
   private baseUrl: string;
   private _currentToken: string = '';
@@ -235,11 +237,13 @@ export class AuthService {
     private _loggerFactory: LoggerFactory,
     @Inject(HttpClient)
     private http: HttpClient,
-    @Inject(RN_AUTH_CONFIG)
-    private config: RnAuthConfig
+    @Inject(RN_APP_CONFIG)
+    private config: RnAppConfig
   ) {
-    this.baseUrl = this.config.apiBaseUrl;
     this._logger = this._loggerFactory.getInstance('AuthService');
+    this.baseUrl = this.config.apiBaseUrl;
+    this.keyToken = this.config.auth.storageTokenName;
+    this.keyUserInfo = this.config.auth.storageUserInfo;
     this._tryResumeSession();
   }
 
@@ -287,7 +291,7 @@ export class AuthService {
 
     this._logger.trace2('updateAuthToken', `updating token (${token.length} bytes)`);
     this._currentToken = token;
-    this._storage.setItem(this.config.storageTokenName, token);
+    this._storage.setItem(this.keyToken, token);
   }
 
   public getAuthToken = () => {
@@ -363,22 +367,22 @@ export class AuthService {
     this.currentUser = undefined;
 
     if(!loggedIn) {
-      if(this._storage.hasItem(this.config.storageUserInfo)) {
-        this._storage.removeItem(this.config.storageUserInfo);
+      if(this._storage.hasItem(this.keyUserInfo)) {
+        this._storage.removeItem(this.keyUserInfo);
       }
       return;
     }
     
     this.currentUser = response.user;
-    this._storage.setItem(this.config.storageUserInfo, this.currentUser);
+    this._storage.setItem(this.keyUserInfo, this.currentUser);
   }
 
   private _removeCurrentUser = () => {
     this._logger.traceMethod('_removeCurrentUser');
     this.currentUser = undefined;
 
-    if(this._storage.hasItem(this.config.storageUserInfo)) {
-      this._storage.removeItem(this.config.storageUserInfo);
+    if(this._storage.hasItem(this.keyUserInfo)) {
+      this._storage.removeItem(this.keyUserInfo);
       this._logger.trace2('_removeCurrentUser', 'Removed current user info');
     }
   }
@@ -392,8 +396,8 @@ export class AuthService {
       this._currentToken = '';
       this._removeCurrentUser();
       
-      if(this._storage.hasItem(this.config.storageTokenName)) {
-        this._storage.removeItem(this.config.storageTokenName);
+      if(this._storage.hasItem(this.keyToken)) {
+        this._storage.removeItem(this.keyToken);
       }
     }
     else {
@@ -415,15 +419,15 @@ export class AuthService {
   }
 
   private _tryResumeSession = () => {
-    if(this._storage.hasItem(this.config.storageUserInfo)) {
+    if(this._storage.hasItem(this.keyUserInfo)) {
       this._logger.trace('loading stored user info');
-      this.currentUser = this._storage.getItem<UserDto>(this.config.storageUserInfo);
+      this.currentUser = this._storage.getItem<UserDto>(this.keyUserInfo);
     }
     
-    if(this._storage.hasItem(this.config.storageTokenName)) {
+    if(this._storage.hasItem(this.keyToken)) {
       // TODO: [VALIDATION] Add some form of token validation here
       this._logger.trace('found stored session token');
-      this._setLoggedInSate(true, this._storage.getItem<string>(this.config.storageTokenName));
+      this._setLoggedInSate(true, this._storage.getItem<string>(this.keyToken));
     }
   }
 }

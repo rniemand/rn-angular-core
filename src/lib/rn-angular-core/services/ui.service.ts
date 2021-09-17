@@ -1,8 +1,8 @@
-import { EventEmitter, Inject, Injectable, Optional } from "@angular/core";
+import { EventEmitter, Inject, Injectable } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
+import { RnAppConfig, RN_APP_CONFIG } from "src/lib/public_api";
 import { ValidationErrorDialog, ValidationErrorDialogData } from "../dialogs/validation-error/validation-error.dialog";
-import { RN_DIALOG_DEFAULTS } from "../rn-angular-core.config";
 
 export interface NotifyOptions {
   message: string;
@@ -25,15 +25,15 @@ export class UiService {
   loaderVisible: boolean = false;
 
   private _closeOnError: boolean = false;
+  private _dialogDefaults: MatDialogConfig;
   
   constructor(
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
-    @Optional()
-    @Inject(RN_DIALOG_DEFAULTS)
-    private _dialogDefaults?: MatDialogConfig
+    @Inject(RN_APP_CONFIG)
+    private config: RnAppConfig
   ) {
-    this._dialogDefaults = this._dialogDefaults || {};
+    this._dialogDefaults = this.config.dialogDefaults;
   }
   
   notify = (options: NotifyOptions | string, duration?: number) => {

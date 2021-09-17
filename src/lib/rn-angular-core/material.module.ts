@@ -37,6 +37,7 @@ const modules = [
   MatFormFieldModule,
   MatAutocompleteModule,
   MatTooltipModule,
+  MatToolbarModule,
 ];
 
 @NgModule({
