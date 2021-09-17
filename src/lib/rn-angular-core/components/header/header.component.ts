@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { RnAppConfig, RN_APP_CONFIG } from 'src/lib/public_api';
 
 @Component({
-  selector: 'app-header',
+  selector: 'rn-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
