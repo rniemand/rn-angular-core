@@ -22,7 +22,8 @@ export const RnDefaultAppConfig: RnAppConfig = {
   },
   apiBaseUrl: '',
   appName: 'RnAngularCore',
-  appVersion: '1.0.0'
+  appVersion: '1.0.0',
+  production: true
 };
 
 export const RN_APP_CONFIG = new InjectionToken<RnAppConfig>('RN_APP_CONFIG');

@@ -8,5 +8,6 @@ export interface RnAppConfig {
   auth: RnAuthConfig,
   apiBaseUrl: string,
   appName: string,
-  appVersion: string
+  appVersion: string,
+  production: boolean
 }
