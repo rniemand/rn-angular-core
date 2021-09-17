@@ -43,7 +43,6 @@ const defaultAuthConfig: RnAuthConfig = {
     FormsModule,
     ReactiveFormsModule,
     RnCoreMaterialModule,
-
     HttpClientModule,
   ],
   declarations: [
@@ -56,6 +55,7 @@ const defaultAuthConfig: RnAuthConfig = {
     FormsModule,
     ReactiveFormsModule,
     RnCoreMaterialModule,
+    HttpClientModule,
   ],
   entryComponents: [],
   providers: [
