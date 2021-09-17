@@ -14,7 +14,7 @@ import { ValidationErrorDialog } from './dialogs/dialogs';
 import { LoggerFactory } from './logger/logger';
 
 // Configuration
-import { RnDefaultAppConfig, RN_APP_CONFIG } from './rn-angular-core.config';
+import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-core.config';
 
 
 @NgModule({

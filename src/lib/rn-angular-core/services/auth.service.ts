@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
-import { RnAppConfig, RN_APP_CONFIG } from "../rn-angular-core.config";
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf, Subject } from 'rxjs';
+
+// RnAngularCore
+import { RnAppConfig, RN_APP_CONFIG } from "../configuration/rn-angular-core.config";
 import { StorageService } from "./storage.service";
 import { UiService } from "./ui.service";
 import { LoggerFactory, LoggerInstance } from "../logger/logger";

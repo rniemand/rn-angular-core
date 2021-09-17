@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { RnAppConfig, RN_APP_CONFIG } from '../../rn-angular-core.config';
+import { RnAppConfig, RN_APP_CONFIG } from '../../configuration/rn-angular-core.config';
 
 @Component({
   selector: 'rn-header',
