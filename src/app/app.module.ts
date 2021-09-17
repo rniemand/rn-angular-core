@@ -14,7 +14,7 @@ import { RnAngularCoreModule, RnAppConfig, RnDefaultAppConfig, RN_APP_CONFIG, Sh
 
 const appConfig: RnAppConfig = {
   ...RnDefaultAppConfig,
-  apiBaseUrl: 'http://localhost:61623',
+  apiBaseUrl: '',
   appName: 'Demo App',
   appVersion: '1.0.1',
   auth: {

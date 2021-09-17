@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShortcutsService } from 'src/lib/public_api';
+import { AuthService, ShortcutsService } from 'src/lib/public_api';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,8 @@ export class HomeComponent implements OnInit {
   category: string = 'home';
 
   constructor(
-    private _shortcuts: ShortcutsService
+    private _shortcuts: ShortcutsService,
+    private _authService: AuthService
   ) {
     this._shortcuts.addHomeShortcut({
       icon: 'home',
@@ -37,6 +38,8 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.category = 'test';
     }, 2000);
+
+    console.log(this._authService.getNumberAttribute('ActiveHomeId'));
   }
 
 }

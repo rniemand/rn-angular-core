@@ -305,12 +305,47 @@ export class AuthService {
     return this._currentToken;
   }
 
-  getCurrentUserId = () => {
+  public getCurrentUserId = () => {
     return this.currentUser?.userId ?? 0;
+  }
+
+  public getNumberAttribute = (attribute: string, fallback: number = 0): number => {
+    if(!this.currentUser) {
+      return fallback;
+    }
+
+    let rawValue = this._getAttribute(attribute);
+    if(rawValue === undefined) {
+      return fallback;
+    }
+
+    if(typeof rawValue === 'number') {
+      return rawValue;
+    }
+
+    if(typeof rawValue === 'string') {
+      let parsedValue = parseInt(rawValue);
+      if(isNaN(parsedValue)) { return fallback; }
+      return parsedValue;
+    }
+    
+    return fallback;
   }
 
 
   // internal
+  private _getAttribute = (attribute: string) => {
+    if(!this.currentUser || !this.currentUser.attributes) {
+      return undefined;
+    }
+
+    if(!this.currentUser.attributes.hasOwnProperty(attribute)) {
+      return undefined;
+    }
+
+    return this.currentUser.attributes[attribute];
+  }
+
   private _authenticate(request: AuthenticationRequest): Observable<AuthenticationResponse> {
     let url_ = this.baseUrl + "/api/Auth/authenticate";
     url_ = url_.replace(/[?&]$/, "");
