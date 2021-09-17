@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoggerConfiguration, LoggerSeverity, RnAngularCoreModule } from 'src/lib/public_api';
-import { RNCORE_API_BASE_URL, RN_LOGGER_CONFIG } from 'src/lib/rn-angular-core/rn-angular-core.config';
+import { RnAuthConfig, RN_AUTH_CONFIG, RN_LOGGER_CONFIG } from 'src/lib/rn-angular-core/rn-angular-core.config';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,13 @@ const defaultLoggerConfig: LoggerConfiguration = {
   enableMethodTracing: true,
   skipInitMethodTracing: false,
   disabledInstances: []
-}
+};
+
+const defaultAuthConfig: RnAuthConfig = {
+  apiBaseUrl: 'http://localhost:61623',
+  storageTokenName: 'rnCore.userToken',
+  storageUserInfo: 'rnCore.userInfo'
+};
 
 @NgModule({
   declarations: [
@@ -30,7 +36,7 @@ const defaultLoggerConfig: LoggerConfiguration = {
     RnAngularCoreModule,
   ],
   providers: [
-    { provide: RNCORE_API_BASE_URL, useValue: 'http://localhost:61623' },
+    { provide: RN_AUTH_CONFIG, useValue: defaultAuthConfig },
     { provide: RN_LOGGER_CONFIG, useValue: defaultLoggerConfig }
   ],
   bootstrap: [AppComponent]

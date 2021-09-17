@@ -50,6 +50,7 @@ const defaultAuthConfig: RnAuthConfig = {
     ValidationErrorDialog
   ],
   exports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
