@@ -7,16 +7,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RnCoreMaterialModule } from './material.module';
+import { RouterModule } from '@angular/router';
 
 // Public APIs
 import { BreadcrumbsComponent, HeaderComponent, ShortcutsComponent, SideNavComponent } from './components/components';
 import { AuthService, ShortcutsService, StorageService, UiService } from './services/services';
 import { ValidationErrorDialog } from './dialogs/dialogs';
 import { LoggerFactory } from './logger/logger';
+import { HumanBoolPipe } from './pipes/pipes';
 
 // Configuration
 import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-core.config';
-import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -40,6 +41,9 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     SideNavComponent,
     ShortcutsComponent,
+
+    // Pipes
+    HumanBoolPipe,
   ],
   exports: [
     CommonModule,
@@ -57,6 +61,9 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     SideNavComponent,
     ShortcutsComponent,
+
+    // Pipes
+    HumanBoolPipe,
   ],
   entryComponents: [],
   providers: [
