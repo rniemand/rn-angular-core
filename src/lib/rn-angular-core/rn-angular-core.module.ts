@@ -9,7 +9,7 @@ import { RnCoreMaterialModule } from './material.module';
 
 // Public APIs
 import { BreadcrumbsComponent, HeaderComponent } from './components/components';
-import { AuthService, StorageService, UiService } from './services/services';
+import { AuthService, ShortcutsService, StorageService, UiService } from './services/services';
 import { ValidationErrorDialog } from './dialogs/dialogs';
 import { LoggerFactory } from './logger/logger';
 
@@ -54,6 +54,7 @@ import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-co
     AuthService,
     UiService,
     LoggerFactory,
+    ShortcutsService,
   ]
 })
 export class RnAngularCoreModule {
