@@ -13,7 +13,7 @@ export interface Crumb {
   routerExtras?: NavigationExtras;
 }
 @Component({
-  selector: 'nav-breadcrumbs',
+  selector: 'rn-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss']
 })
