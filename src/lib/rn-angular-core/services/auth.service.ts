@@ -4,7 +4,7 @@ import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 
 import { Observable, throwError as _observableThrow, of as _observableOf, Subject } from 'rxjs';
 
 // RnAngularCore
-import { RnAppConfig, RN_APP_CONFIG } from "../configuration/rn-angular-core.config";
+import { RnAppConfig, RN_APP_CONFIG } from "../configuration/configuration";
 import { StorageService } from "./storage.service";
 import { UiService } from "./ui.service";
 import { LoggerFactory, LoggerInstance } from "../logger/logger";

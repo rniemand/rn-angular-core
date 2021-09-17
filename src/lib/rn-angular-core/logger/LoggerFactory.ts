@@ -1,7 +1,8 @@
 import { Inject, Injectable } from "@angular/core";
-import { LoggerConfiguration, RnAppConfig, RN_APP_CONFIG } from "src/lib/public_api";
-import { LoggerInstance } from "./LoggerInstance";
-import { LoggerSeverity } from "./LoggerSeverity";
+
+// RnAngularCore
+import { RnAppConfig, RN_APP_CONFIG } from "../configuration/configuration";
+import { LoggerConfiguration, LoggerInstance, LoggerSeverity } from "./logger";
 
 @Injectable()
 export class LoggerFactory {

@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 
 // RnAngularCore
-import { RnAppConfig, RN_APP_CONFIG } from "../configuration/rn-angular-core.config";
+import { RnAppConfig, RN_APP_CONFIG } from "../configuration/configuration";
 import { ValidationErrorDialogData, ValidationErrorDialog } from "../dialogs/dialogs";
 
 export interface NotifyOptions {

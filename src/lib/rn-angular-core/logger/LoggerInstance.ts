@@ -1,4 +1,6 @@
 import { SimpleChanges } from "@angular/core";
+
+// RnAngularCore
 import { LoggerFactory } from "./LoggerFactory";
 import { LoggerSeverity } from "./LoggerSeverity";
 

@@ -1,3 +1,4 @@
+// RnAngularCore
 import { LoggerSeverity } from "./LoggerSeverity";
 
 export interface LoggerConfiguration {
