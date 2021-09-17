@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { LoggerConfiguration, LoggerSeverity } from './logger';
+import { LoggerConfiguration, LoggerSeverity } from './logger/logger';
 
 export interface RnAuthConfig {
   storageTokenName: string,

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from "@angular/router";
-import { LoggerFactory, LoggerInstance } from '../../logger';
+import { LoggerFactory, LoggerInstance } from '../../logger/logger';
 
 export interface Crumb {
   title?: string;

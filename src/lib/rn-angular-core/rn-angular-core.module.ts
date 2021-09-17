@@ -11,7 +11,7 @@ import { RnCoreMaterialModule } from './material.module';
 import { BreadcrumbsComponent, HeaderComponent } from './components/components';
 import { AuthService, StorageService, UiService } from './services/services';
 import { ValidationErrorDialog } from './dialogs/dialogs';
-import { LoggerFactory } from './logger';
+import { LoggerFactory } from './logger/logger';
 
 // Configuration
 import { RnDefaultAppConfig, RN_APP_CONFIG } from './rn-angular-core.config';
