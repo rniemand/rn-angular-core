@@ -72,12 +72,9 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
 
   // internal
   private _initCrumbs = (crumbs: Crumb[]) => {
-    this._logger.traceMethod('_initCrumbs', crumbs);
-
+    this._logger.traceMethod('_initCrumbs');
     const parsed: Crumb[] = [];
-
-    console.log('here');
-
+    
     parsed.push(this._finaliseCrumb({
       icon: 'home',
       routerLink: ['/']
