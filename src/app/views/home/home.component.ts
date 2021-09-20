@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, ShortcutsService } from 'src/lib/public_api';
+import { AuthService, Crumb, ShortcutsService } from 'src/lib/public_api';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +8,9 @@ import { AuthService, ShortcutsService } from 'src/lib/public_api';
 })
 export class HomeComponent implements OnInit {
   category: string = 'home';
+  crumbs: Crumb[] = [
+    { title: 'Home', routerLink: ['/'] }
+  ];
 
   constructor(
     private _shortcuts: ShortcutsService,

@@ -34,13 +34,12 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
   
   // public
   ngOnInit(): void {
-    this._logger.traceMethod('ngOnInit');
-    if(this.crumbs.length > 0) {
-      this._initCrumbs(this.crumbs);
-    }
+    this._logger.traceInit();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this._logger.traceOnChanges(changes);
+
     if(changes?.crumbs) {
       this._initCrumbs(changes.crumbs.currentValue);
     }
@@ -73,9 +72,11 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
 
   // internal
   private _initCrumbs = (crumbs: Crumb[]) => {
-    this._logger.traceMethod('_initCrumbs');
+    this._logger.traceMethod('_initCrumbs', crumbs);
 
     const parsed: Crumb[] = [];
+
+    console.log('here');
 
     parsed.push(this._finaliseCrumb({
       icon: 'home',
