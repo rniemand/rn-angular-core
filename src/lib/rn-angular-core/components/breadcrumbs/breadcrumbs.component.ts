@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NavigationExtras, Router } from "@angular/router";
 
 // RnAngularCore
@@ -14,12 +14,13 @@ export interface Crumb {
   routerLink?: any[];
   routerExtras?: NavigationExtras;
 }
+
 @Component({
   selector: 'rn-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss']
 })
-export class BreadcrumbsComponent implements OnInit {
+export class BreadcrumbsComponent implements OnInit, OnChanges {
   @Input('crumbs') crumbs: Crumb[] = [];
 
   private _logger: LoggerInstance;
@@ -30,11 +31,16 @@ export class BreadcrumbsComponent implements OnInit {
   ) {
     this._logger = this.loggerFactory.getInstance('BreadcrumbsComponent');
   }
-
   
   // public
   ngOnInit(): void {
     this._logger.traceMethod('ngOnInit');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes?.crumbs) {
+      this._initCrumbs(changes.crumbs.currentValue);
+    }
   }
 
   follow = (crumb: Crumb) => {
@@ -45,7 +51,6 @@ export class BreadcrumbsComponent implements OnInit {
 
   setCrumbs = (crumbs: Crumb[]) => {
     this._logger.traceMethod('setCrumbs');
-
     this._initCrumbs(crumbs);
   }
 
