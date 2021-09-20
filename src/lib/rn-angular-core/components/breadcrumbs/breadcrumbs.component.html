@@ -1,4 +1,4 @@
-<div class="breadcrumbs">
+<div [class]="useClass">
   <span *ngFor="let crumb of crumbs">
     <mat-icon *ngIf="crumb.isIcon && crumb.isLink" class="icon link" (click)="follow(crumb)">
       {{ crumb.icon }}

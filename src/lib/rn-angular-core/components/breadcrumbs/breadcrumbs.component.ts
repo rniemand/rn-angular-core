@@ -22,6 +22,7 @@ export interface Crumb {
 })
 export class BreadcrumbsComponent implements OnInit, OnChanges {
   @Input('crumbs') crumbs: Crumb[] = [];
+  @Input('useClass') useClass: string = 'rn-breadcrumbs';
 
   private _logger: LoggerInstance;
 
