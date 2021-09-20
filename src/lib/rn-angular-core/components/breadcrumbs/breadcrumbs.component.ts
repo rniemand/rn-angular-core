@@ -35,6 +35,9 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
   // public
   ngOnInit(): void {
     this._logger.traceMethod('ngOnInit');
+    if(this.crumbs.length > 0) {
+      this._initCrumbs(this.crumbs);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
