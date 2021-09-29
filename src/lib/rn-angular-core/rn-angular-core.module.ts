@@ -10,11 +10,11 @@ import { RnCoreMaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 
 // Public APIs
-import { BreadcrumbsComponent, HeaderComponent, ShortcutsComponent, SideNavComponent } from './components/components';
-import { AuthService, ShortcutsService, StorageService, UiService } from './services/services';
-import { ValidationErrorDialog } from './dialogs/dialogs';
-import { LoggerFactory } from './logger/logger';
-import { HumanBoolPipe } from './pipes/pipes';
+import { BreadcrumbsComponent, HeaderComponent, ShortcutsComponent, SideNavComponent } from './components/_components';
+import { AuthService, ShortcutsService, StorageService, UiService } from './services/_services';
+import { ValidationErrorDialog } from './dialogs/_dialogs';
+import { LoggerFactory } from './logger/_logger';
+import { HumanBoolPipe } from './pipes/_pipes';
 
 // Configuration
 import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-core.config';

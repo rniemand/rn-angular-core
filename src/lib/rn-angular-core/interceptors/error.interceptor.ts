@@ -4,7 +4,7 @@ import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 
 // RnAngularCore
-import { AuthService, UiService, ValidationError } from "../services/services";
+import { AuthService, UiService, ValidationError } from "../services/_services";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

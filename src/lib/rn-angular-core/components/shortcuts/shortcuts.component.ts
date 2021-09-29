@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 // RnAngularCore
-import { LoggerFactory, LoggerInstance } from '../../logger/logger';
-import { AuthService, HomeShortcut, HomeShortcutAction, ShortcutsService } from '../../services/services';
+import { LoggerFactory, LoggerInstance } from '../../logger/_logger';
+import { AuthService, HomeShortcut, HomeShortcutAction, ShortcutsService } from '../../services/_services';
 
 @Component({
   selector: 'rn-shortcuts',

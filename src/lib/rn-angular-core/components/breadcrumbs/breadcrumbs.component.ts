@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { NavigationExtras, Router } from "@angular/router";
 
 // RnAngularCore
-import { LoggerFactory, LoggerInstance } from '../../logger/logger';
+import { LoggerFactory, LoggerInstance } from '../../logger/_logger';
 
 export interface Crumb {
   title?: string;

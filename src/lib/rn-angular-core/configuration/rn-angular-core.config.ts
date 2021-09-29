@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { LoggerSeverity } from '../logger/logger';
+import { LoggerSeverity } from '../logger/_logger';
 import { RnAppConfig } from './RnAppConfig';
 
 export const RnDefaultAppConfig: RnAppConfig = {

@@ -2,8 +2,8 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { Subscription } from 'rxjs';
 
 // RnAngularCore
-import { LoggerFactory, LoggerInstance } from '../../logger/logger';
-import { AuthService, ShortcutsService, SideNavShortcut } from '../../services/services';
+import { LoggerFactory, LoggerInstance } from '../../logger/_logger';
+import { AuthService, ShortcutsService, SideNavShortcut } from '../../services/_services';
 
 @Component({
   selector: 'rn-side-nav',

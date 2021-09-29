@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 
 // RnAngularCore
-import { AuthService } from "../services/services";
+import { AuthService } from "../services/_services";
 
 @Injectable()
 export class SessionTokenInterceptor implements HttpInterceptor {

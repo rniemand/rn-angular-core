@@ -1,5 +1,5 @@
 import { MatDialogConfig } from "@angular/material/dialog";
-import { LoggerConfiguration } from "../logger/logger";
+import { LoggerConfiguration } from "../logger/_logger";
 import { RnAuthConfig } from "./RnAuthConfig";
 
 export interface RnAppConfig {

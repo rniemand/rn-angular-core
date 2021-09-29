@@ -4,10 +4,10 @@ import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 
 import { Observable, throwError as _observableThrow, of as _observableOf, Subject } from 'rxjs';
 
 // RnAngularCore
-import { RnAppConfig, RN_APP_CONFIG } from "../configuration/configuration";
+import { RnAppConfig, RN_APP_CONFIG } from "../configuration/_configuration";
 import { StorageService } from "./storage.service";
 import { UiService } from "./ui.service";
-import { LoggerFactory, LoggerInstance } from "../logger/logger";
+import { LoggerFactory, LoggerInstance } from "../logger/_logger";
 
 
 export class UserDto implements IUserDto {
