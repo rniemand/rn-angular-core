@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NavigationExtras, Router } from "@angular/router";
+import { RnCoreComponent } from '../../enums/_enums';
 
 // RnAngularCore
 import { LoggerFactory, LoggerInstance } from '../../logger/_logger';
@@ -30,7 +31,7 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
     private router: Router,
     private loggerFactory: LoggerFactory
   ) {
-    this._logger = this.loggerFactory.getInstance('BreadcrumbsComponent');
+    this._logger = this.loggerFactory.getInstance(RnCoreComponent.Breadcrumbs);
   }
   
   // public

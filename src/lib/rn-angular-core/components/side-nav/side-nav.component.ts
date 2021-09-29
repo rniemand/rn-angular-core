@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { RnCoreComponent } from '../../enums/_enums';
 
 // RnAngularCore
 import { LoggerFactory, LoggerInstance } from '../../logger/_logger';
@@ -24,7 +25,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private shortcuts: ShortcutsService
   ) {
-    this._logger = this.loggerFactory.getInstance('SideNavComponent');
+    this._logger = this.loggerFactory.getInstance(RnCoreComponent.SideNav);
     this.loggedIn = this.authService.loggedIn;
 
     this._subscriptions.push(this.authService.authChanged.subscribe(this._onAuthChanged));

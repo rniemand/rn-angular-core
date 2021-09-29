@@ -8,6 +8,7 @@ import { RnAppConfig, RN_APP_CONFIG } from "../configuration/_configuration";
 import { StorageService } from "./storage.service";
 import { UiService } from "./ui.service";
 import { LoggerFactory, LoggerInstance } from "../logger/_logger";
+import { RnCoreService } from "../enums/_enums";
 
 
 export class UserDto implements IUserDto {
@@ -242,7 +243,7 @@ export class AuthService {
     @Inject(RN_APP_CONFIG)
     private config: RnAppConfig
   ) {
-    this._logger = this._loggerFactory.getInstance('AuthService');
+    this._logger = this._loggerFactory.getInstance(RnCoreService.Auth);
     this.baseUrl = this.config.apiBaseUrl;
     this.keyToken = this.config.auth.storageTokenName;
     this.keyUserInfo = this.config.auth.storageUserInfo;

@@ -1,6 +1,7 @@
 export * from './rn-angular-core/components/_components';
 export * from './rn-angular-core/configuration/_configuration';
 export * from './rn-angular-core/dialogs/_dialogs';
+export * from './rn-angular-core/enums/_enums';
 export * from './rn-angular-core/guards/_guards';
 export * from './rn-angular-core/interceptors/_interceptors';
 export * from './rn-angular-core/logger/_logger';

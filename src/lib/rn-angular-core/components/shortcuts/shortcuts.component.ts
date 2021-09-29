@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { RnCoreComponent } from '../../enums/_enums';
 
 // RnAngularCore
 import { LoggerFactory, LoggerInstance } from '../../logger/_logger';
@@ -27,7 +28,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy, OnChanges {
     private _shortcuts: ShortcutsService,
     private _router: Router
   ) {
-    this._logger = this._loggerFactory.getInstance('ShortcutsComponent');
+    this._logger = this._loggerFactory.getInstance(RnCoreComponent.Shortcuts);
   }
   
   // interface
