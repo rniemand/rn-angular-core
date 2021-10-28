@@ -106,21 +106,8 @@ export class AuthService {
   public getCurrentUserId = () => {
     return this.currentUser?.userId ?? 0;
   }
-
-
+  
   // internal
-  private _getAttribute = (attribute: string) => {
-    if(!this.currentUser || !this.currentUser.attributes) {
-      return undefined;
-    }
-
-    if(!this.currentUser.attributes.hasOwnProperty(attribute)) {
-      return undefined;
-    }
-
-    return this.currentUser.attributes[attribute];
-  }
-
   private _authenticate(request: AuthenticationRequest): Observable<AuthenticationResponse> {
     let url_ = this.baseUrl + "/api/Auth/authenticate";
     url_ = url_.replace(/[?&]$/, "");

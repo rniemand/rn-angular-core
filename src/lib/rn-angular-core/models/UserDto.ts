@@ -6,6 +6,9 @@ export interface IUserDto {
   username?: string | undefined;
   email?: string | undefined;
   attributes?: { [key: string]: any; } | undefined;
+
+  hasAttribute(attribute: string): boolean;
+  getIntAttribute(attribute: string, fallback: number): number;
 }
 
 export class UserDto implements IUserDto {
@@ -86,6 +89,14 @@ export class UserDto implements IUserDto {
     }
     
     return fallback;
+  }
+
+  hasAttribute = (attribute: string): boolean => {
+    if(!this.attributes) {
+      return false;
+    }
+
+    return this.attributes.hasOwnProperty(attribute);
   }
 
   // internal
