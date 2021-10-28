@@ -106,29 +106,6 @@ export class AuthService {
   public getCurrentUserId = () => {
     return this.currentUser?.userId ?? 0;
   }
-  
-  public getIntUserAttribute = (attribute: string, fallback: number = 0): number => {
-    if(!this.currentUser) {
-      return fallback;
-    }
-
-    let rawValue = this._getAttribute(attribute);
-    if(rawValue === undefined) {
-      return fallback;
-    }
-
-    if(typeof rawValue === 'number') {
-      return rawValue;
-    }
-
-    if(typeof rawValue === 'string') {
-      let parsedValue = parseInt(rawValue);
-      if(isNaN(parsedValue)) { return fallback; }
-      return parsedValue;
-    }
-    
-    return fallback;
-  }
 
 
   // internal

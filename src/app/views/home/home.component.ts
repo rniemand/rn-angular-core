@@ -42,9 +42,15 @@ export class HomeComponent implements OnInit {
       this.category = 'test';
     }, 2000);
 
-    console.log('ActiveHomeId',
-      this._authService.getIntUserAttribute('ActiveHomeId')
-    );
+    if(this._authService.currentUser) {
+      const user = this._authService.currentUser;
+
+      console.log('ActiveHomeId',
+        user.getIntAttribute('ActiveHomeId')
+      );
+    }
+
+    
   }
 
 }

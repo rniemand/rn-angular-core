@@ -69,7 +69,7 @@ export class UserDto implements IUserDto {
       return data; 
   }
 
-  public getIntAttribute = (attribute: string, fallback: number = 0): number => {
+  getIntAttribute = (attribute: string, fallback: number = 0): number => {
     let rawValue = this._getAttribute(attribute);
 
     if(rawValue === undefined) {
