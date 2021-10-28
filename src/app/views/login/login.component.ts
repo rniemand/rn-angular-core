@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserDto } from 'dist/public_api';
 import { Subscription } from 'rxjs';
 import { LoggerFactory, LoggerInstance } from 'src/lib/public_api';
-import { AuthResult, AuthService, UserDto } from 'src/lib/rn-angular-core/services/auth.service';
+import { AuthResult, AuthService } from 'src/lib/rn-angular-core/services/auth.service';
 import { UiService } from 'src/lib/rn-angular-core/services/ui.service';
 
 @Component({
