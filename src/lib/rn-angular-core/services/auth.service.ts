@@ -309,8 +309,8 @@ export class AuthService {
   public getCurrentUserId = () => {
     return this.currentUser?.userId ?? 0;
   }
-
-  public getNumberAttribute = (attribute: string, fallback: number = 0): number => {
+  
+  public getIntUserAttribute = (attribute: string, fallback: number = 0): number => {
     if(!this.currentUser) {
       return fallback;
     }

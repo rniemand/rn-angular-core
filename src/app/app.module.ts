@@ -9,7 +9,7 @@ import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 
 // RnAngularCore
-import { RnAngularCoreModule, RnAppConfig, RnDefaultAppConfig, RN_APP_CONFIG, ShortcutsService } from 'src/lib/public_api';
+import { RnAngularCoreModule, RnAppConfig, RnCoreComponent, RnCoreService, RnDefaultAppConfig, RN_APP_CONFIG, ShortcutsService } from 'src/lib/public_api';
 
 
 const appConfig: RnAppConfig = {
@@ -23,7 +23,18 @@ const appConfig: RnAppConfig = {
     storageUserInfo: 'rnCore.userInfo'
   },
   logger: {
-    ...RnDefaultAppConfig.logger
+    ...RnDefaultAppConfig.logger,
+    disabledInstances: [
+      RnCoreComponent.Breadcrumbs,
+      RnCoreComponent.Header,
+      RnCoreComponent.Shortcuts,
+      RnCoreComponent.SideNav,
+
+      RnCoreService.Auth,
+      RnCoreService.Shortcuts,
+      RnCoreService.Storage,
+      RnCoreService.UI
+    ]
   }
 };
 
