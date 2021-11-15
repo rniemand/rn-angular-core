@@ -31,7 +31,6 @@ export class SideNavComponent implements OnInit, OnDestroy {
     this._subscriptions.push(this.authService.authChanged.subscribe(this._onAuthChanged));
     this._refreshNavLinks();
   }
-  
 
   // interface methods
   ngOnInit() {
@@ -42,7 +41,6 @@ export class SideNavComponent implements OnInit, OnDestroy {
     this._logger.traceMethod('ngOnDestroy');
     this._subscriptions?.forEach(s => s?.unsubscribe());
   }
-
 
   // template methods
   onClose = () => {
@@ -56,7 +54,6 @@ export class SideNavComponent implements OnInit, OnDestroy {
     this.closeSidenav.emit();
     this.authService.logout();
   }
-
 
   // internal methods
   private _onAuthChanged = (loggedIn: boolean) => {

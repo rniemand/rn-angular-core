@@ -13,14 +13,22 @@ export class HeaderComponent implements OnInit {
   loggedIn: boolean = false;
   appName: string = 'RnAngularCore';
 
-  constructor(@Inject(RN_APP_CONFIG) private config: RnAppConfig) {
+  constructor(
+    @Inject(RN_APP_CONFIG)
+    private config: RnAppConfig
+  ) {
     this.appName = this.config.appName;
   }
   
+  // interfaces
   ngOnInit(): void { /* placeholder: ngOnInit() */ }
 
+  // custom
   onToggleSidenav() {
     this.sidenavToggle.emit();
   }
 
+  setAppName = (appName: string) => {
+    this.appName = appName;
+  }
 }
