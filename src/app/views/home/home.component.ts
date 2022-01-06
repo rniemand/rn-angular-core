@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService, Crumb, ShortcutsService } from 'src/lib/public_api';
 
 @Component({
@@ -14,7 +15,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private _shortcuts: ShortcutsService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    @Inject(HttpClient)
+    private http: HttpClient,
   ) {
     this._shortcuts.addHomeShortcut({
       icon: 'home',
@@ -42,15 +45,35 @@ export class HomeComponent implements OnInit {
       this.category = 'test';
     }, 2000);
 
-    if(this._authService.currentUser) {
-      const user = this._authService.currentUser;
+    // if(this._authService.currentUser) {
+    //   const user = this._authService.currentUser;
 
-      console.log('ActiveHomeId',
-        user.getIntAttribute('ActiveHomeId')
-      );
-    }
-
+    //   console.log('ActiveHomeId',
+    //     user.getIntAttribute('ActiveHomeId')
+    //   );
+    // }
     
+    // let url_ = "http://localhost:5000/api/Chore/add";
+    // url_ = url_.replace(/[?&]$/, "");
+    // const content_ = JSON.stringify({});
+    // let options_ : any = {
+    //     body: content_,
+    //     observe: "response",
+    //     responseType: "blob",
+    //     headers: new HttpHeaders({
+    //         "Content-Type": "application/json",
+    //         "Accept": "application/json"
+    //     })
+    // };
+
+    // this.http.request("post", url_, options_).toPromise().then(
+    //   (response: any) => {
+    //     console.log(response);
+    //   },
+    //   (error: any) => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
 }

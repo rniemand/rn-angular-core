@@ -1,4 +1,4 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -43,37 +43,57 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     private isValidationError = (obj: any): boolean => {
-      if(!obj)
-        return false;
+      if(!obj) { return false; }
+      if(obj.hasOwnProperty('error')) { return true; }
+      if(obj.hasOwnProperty('errors')) { return true; }
+      if(obj.hasOwnProperty('ruleSetsExecuted')) { return true; }
 
-      if(
-        !obj.hasOwnProperty('error') ||
-        !obj.hasOwnProperty('errors') ||
-        !obj.hasOwnProperty('isValid') ||
-        !obj.hasOwnProperty('ruleSetsExecuted')
-      ) {
-        return false;
-      }
-
-      return true;
+      return false;
     }
 
     private handleValidationError = (err: any) => {
-      if(!err.hasOwnProperty('error') || !(err.error instanceof Blob))
-        return;
-      
+      if(!(err instanceof HttpErrorResponse)) { return; }
+      if(!(err.error instanceof Blob)) { return; }
+      if(!err.hasOwnProperty('error')) { return; }
+
       let castErr = err.error as Blob;
-      if(castErr.type != 'application/json')
-        return;
+      if(!castErr.type) { return; }
 
       const reader = new FileReader();
       reader.addEventListener('loadend', (e) => {
         const text = e.target?.result?.toString() ?? '';
         let json = this.parseJson(text);
+
         if(this.isValidationError(json)) {
-          this.uiService.handleValidationError(json as ValidationError);
+          if(json.hasOwnProperty('traceId')) {
+            this.uiService.handleValidationError({
+              aspNetError: json,
+              error: '',
+              errors: [],
+              isValid: false,
+              ruleSetsExecuted: []
+            });
+          }
+          else {
+            this.uiService.handleValidationError(json as ValidationError);
+          }
         }
       });
       reader.readAsText(err.error);
     }
+
+    /*
+    {
+    "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+    "title": "One or more validation errors occurred.",
+    "status": 400,
+    "traceId": "00-1b644ed16de49ffc81ee5f887fda0ae4-26dc45ca1c1a2c23-00",
+    "errors": {
+          "ChoreName": ["The length of 'Chore Name' must be at least 23 characters. You entered 4 characters."]
+      }
+  }
+*/
+
+
+    // {"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One or more validation errors occurred.","status":400,"traceId":"00-1b644ed16de49ffc81ee5f887fda0ae4-26dc45ca1c1a2c23-00","errors":{"ChoreName":["The length of 'Chore Name' must be at least 23 characters. You entered 4 characters."]}}
 }

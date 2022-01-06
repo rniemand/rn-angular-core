@@ -15,6 +15,7 @@ export interface ValidationErrorDialogData {
 })
 export class ValidationErrorDialog implements OnInit {
   error!: ValidationError;
+  isAspError: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<ValidationErrorDialog>,
@@ -23,6 +24,19 @@ export class ValidationErrorDialog implements OnInit {
 
   ngOnInit(): void {
     this.error = this.data.error;
+    this.isAspError = (this.error?.aspNetError ?? undefined) !== undefined;
+
+    this._processAspNetError();
+  }
+
+  private _processAspNetError = () => {
+    if(!this.isAspError) { return; }
+    this.error.error = this.error.aspNetError.title;
+
+    (Object.getOwnPropertyNames(this.error.aspNetError.errors) ?? []).forEach(key => {
+      let joined = (this.error.aspNetError.errors[key] as string[]).join(', ');
+      this.error.errors.push(`${key}: ${joined}`);
+    });
   }
 
 }
