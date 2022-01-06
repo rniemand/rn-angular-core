@@ -21,58 +21,53 @@ import { RnDefaultAppConfig, RN_APP_CONFIG } from './configuration/rn-angular-co
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RnCoreMaterialModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    RouterModule,
-  ],
-  declarations: [
-    // Dialogs
-    ValidationErrorDialog,
-
-    // Components
-    BreadcrumbsComponent,
-    HeaderComponent,
-    SideNavComponent,
-    ShortcutsComponent,
-
-    // Pipes
-    HumanBoolPipe,
-  ],
-  exports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RnCoreMaterialModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    RouterModule,
-
-    // Components
-    BreadcrumbsComponent,
-    HeaderComponent,
-    SideNavComponent,
-    ShortcutsComponent,
-
-    // Pipes
-    HumanBoolPipe,
-  ],
-  entryComponents: [],
-  providers: [
-    StorageService,
-    AuthService,
-    UiService,
-    LoggerFactory,
-    ShortcutsService,
-  ]
+    imports: [
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RnCoreMaterialModule,
+        HttpClientModule,
+        FlexLayoutModule,
+        RouterModule,
+    ],
+    declarations: [
+        // Dialogs
+        ValidationErrorDialog,
+        // Components
+        BreadcrumbsComponent,
+        HeaderComponent,
+        SideNavComponent,
+        ShortcutsComponent,
+        // Pipes
+        HumanBoolPipe,
+    ],
+    exports: [
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RnCoreMaterialModule,
+        HttpClientModule,
+        FlexLayoutModule,
+        RouterModule,
+        // Components
+        BreadcrumbsComponent,
+        HeaderComponent,
+        SideNavComponent,
+        ShortcutsComponent,
+        // Pipes
+        HumanBoolPipe,
+    ],
+    providers: [
+        StorageService,
+        AuthService,
+        UiService,
+        LoggerFactory,
+        ShortcutsService,
+    ]
 })
 export class RnAngularCoreModule {
   static forRoot(): ModuleWithProviders<RnAngularCoreModule> {

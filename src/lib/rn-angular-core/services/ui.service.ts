@@ -19,6 +19,7 @@ export interface ValidationError {
   errors: string[];
   isValid: boolean;
   ruleSetsExecuted: string[];
+  aspNetError: any;
 }
 
 @Injectable()

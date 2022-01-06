@@ -9,7 +9,8 @@ import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 
 // RnAngularCore
-import { RnAngularCoreModule, RnAppConfig, RnCoreComponent, RnCoreService, RnDefaultAppConfig, RN_APP_CONFIG, ShortcutsService } from 'src/lib/public_api';
+import { AppendTokenInterceptor, ErrorInterceptor, RnAngularCoreModule, RnAppConfig, RnCoreComponent, RnCoreService, RnDefaultAppConfig, RN_APP_CONFIG, SessionTokenInterceptor, ShortcutsService } from 'src/lib/public_api';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 const appConfig: RnAppConfig = {
@@ -51,7 +52,10 @@ const appConfig: RnAppConfig = {
     RnAngularCoreModule,
   ],
   providers: [
-    { provide: RN_APP_CONFIG, useValue: appConfig }
+    { provide: RN_APP_CONFIG, useValue: appConfig },
+    { provide: HTTP_INTERCEPTORS, useClass: AppendTokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SessionTokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

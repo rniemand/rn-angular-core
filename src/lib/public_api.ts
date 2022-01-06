@@ -8,5 +8,7 @@ export * from './rn-angular-core/logger/_logger';
 export * from './rn-angular-core/pipes/_pipes';
 export * from './rn-angular-core/services/_services';
 export * from './rn-angular-core/utils/_utils';
+export * from './rn-angular-core/models/_models';
 
+export * from './rn-angular-core/material.module';
 export * from './rn-angular-core/rn-angular-core.module';
