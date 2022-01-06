@@ -1,5 +1,7 @@
 # RnAngularCore
 
+Notes on committing:
+
 > git add .
 > npm run commit
 
