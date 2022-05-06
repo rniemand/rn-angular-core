@@ -1,8 +1,9 @@
-# RnAngularCore
+# rn-angular-core
+Core Angular framework for my apps
 
-Notes on committing:
+Source code for the project can be found [here](https://github.com/rniemand/rn-angular-core).
 
-> git add .
-> npm run commit
-
-Makes use of: https://www.npmjs.com/package/commitizen
+<!--(Rn.BuildScriptHelper){
+	"version": "1.0.106",
+	"replace": true
+}(END)-->
